@@ -62,7 +62,7 @@ Open http://localhost:5173 and drop in one of the files from [sample-data/](samp
 | `bank_debit_credit_april_2026.csv` | Debit/credit columns, a preamble, client income, an income-tax payment |
 | `european_semicolon_may_2026.csv` | Semicolons, decimal commas, German headers, a euro statement with one dollar row |
 | `card_export_june_2026.ofx` | OFX with a repeated transaction id and a refund |
-| `reference/` | Real-world and standards-based samples, see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) |
+| `reference/` | Published real-world and standards-based samples. All are synthetic except one real council open-data file, see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [sample-data/reference/](sample-data/reference/README.md) |
 
 ### Docker
 

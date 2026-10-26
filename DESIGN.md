@@ -140,7 +140,7 @@ the API layer maps them to pydantic models, and settings come from environment v
 - Reader tests for each format, including every kind of broken file.
 - API tests for each format end to end, every error code, caps, rate limits, CORS,
   corrections, rule persistence across a restart and export injection.
-- **Real-world data:** the parsers are run against files published by others, listed in
+- **Real-world data:** the parsers are run against files published by others (all synthetic apart from one real council open-data CSV, explained in its README), listed in
   [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md): a council purchase-card export,
   OFX fixtures from an open-source library, eight synthetic multi-country bank statement PDFs
   with known transaction counts, and the official ISO 20022 and MT940 samples from a
