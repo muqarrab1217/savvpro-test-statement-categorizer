@@ -72,6 +72,11 @@ counts and ground-truth CSVs shipped with the real sample files, and the reconci
 credits and debits against opening and closing balances is asserted for the bank-standard
 samples.
 
+The AI-run checks above were not the only ones. The author also did all of the verification
+and testing personally, with the backend and frontend deployed and running locally: running
+the services, uploading statements, checking the results and running the test suites. The
+assistant's own checks supplemented that work and did not replace it.
+
 ## Usage numbers
 
 The assistant cannot read its own token counters from inside a session, so the figures below
