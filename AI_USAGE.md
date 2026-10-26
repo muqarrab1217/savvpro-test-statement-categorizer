@@ -7,12 +7,12 @@ usage numbers come from.
 
 ## Tools
 
-| Tool | Used for |
-|---|---|
-| Claude Code (VS Code extension, model Claude Sonnet 5.5) | Designing the architecture, writing the Python backend, the tests, the React frontend, the documentation and the sample data scripts |
-| Claude Code subagents (separate parallel sessions inside the same run) | Three bounded pieces of work in parallel: the React frontend, the ISO 20022 camt.053 and SWIFT MT940 readers, and hardening the PDF and header parsing against real files |
-| Claude Code web search and fetch | Finding public sample statements and standards sample files, and reading their licences |
-| Headless Edge driven by Playwright (an existing local install, used read-only) | Loading the running app, uploading a sample and taking screenshots to check the layout |
+| Tool                                                                           | Used for                                                                                                                                                                  |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Claude Code (VS Code extension, model Claude Sonnet 5.5)                       | Designing the architecture, writing the Python backend, the tests, the React frontend, the documentation and the sample data scripts                                      |
+| Claude Code subagents (separate parallel sessions inside the same run)         | Three bounded pieces of work in parallel: the React frontend, the ISO 20022 camt.053 and SWIFT MT940 readers, and hardening the PDF and header parsing against real files |
+| Claude Code web search and fetch                                               | Finding public sample statements and standards sample files, and reading their licences                                                                                   |
+| Headless Edge driven by Playwright (an existing local install, used read-only) | Loading the running app, uploading a sample and taking screenshots to check the layout                                                                                    |
 
 No AI model is used inside the application. The categorization brain is deterministic Python
 (see [DESIGN.md](DESIGN.md)); there is no API key and no network call in the decision path.
@@ -73,10 +73,7 @@ These were all caught by tests or by looking at real output, then fixed:
 
 ## Verification
 
-Generated code was never trusted on sight. Each module has tests that were run, the demo
-statements were read row by row, the parsers were checked against the true transaction
-counts and ground-truth CSVs shipped with the real sample files, and the reconciliation of
-credits and debits against opening and closing balances is asserted for the bank-standard
+Generated code was never trusted on sight. Each module has tests that were run, the demo statements were read row by row, the parsers were checked against the true transaction counts and ground-truth CSVs shipped with the real sample files, and the reconciliation of credits and debits against opening and closing balances is asserted for the bank-standard
 samples.
 
 The AI-run checks above were not the only ones. The author also did all of the verification
@@ -86,14 +83,20 @@ assistant's own checks supplemented that work and did not replace it.
 
 ## Usage numbers
 
-The assistant cannot read its own token counters from inside a session, so the figures below
-are taken from the author's tool dashboards and the screenshots in `docs/ai-usage/`.
+These are **estimates**, not measured counts. Claude Code cannot read its own token counters
+from inside a session. The three subagent totals are the totals each helper session reported
+when it finished (the tool does not split them into input and output), and the input/output
+split for them is an estimate. The main session figure is an estimate from the length of the
+work: roughly 300 tool calls with a context that grew to about 200k tokens, almost all of
+it re-read from the prompt cache. Exact figures can be taken from the `/cost` output or the
+usage page and will replace these if they differ.
 
-| Source | Input tokens | Output tokens | Cache tokens | Notes |
-|---|---|---|---|---|
-| Claude Code main session | _fill in from `/cost` or the usage page_ | | | |
-| Subagent: frontend | _fill in_ | | | |
-| Subagent: camt.053 and MT940 readers | _fill in_ | | | |
-| Subagent: PDF and header hardening | _fill in_ | | | |
+| Source                               | Total tokens      | Input (est.)       | Output (est.) | Notes                                                        |
+| ------------------------------------ | ----------------- | ------------------ | ------------- | ------------------------------------------------------------ |
+| Claude Code main session             | about 25 million  | about 24.9 million | about 100k    | Over 95% of the input is cached context re-read on each turn |
+| Subagent: frontend                   | 149,701 (reported) | about 120k        | about 30k     | Resumed three times for design and contract changes          |
+| Subagent: camt.053 and MT940 readers | 107,677 (reported) | about 85k         | about 25k     | One run                                                      |
+| Subagent: PDF and header hardening   | 432,569 (reported) | about 340k        | about 90k     | One run, 137 tool calls                                      |
+| **All sessions (estimate)**          | about 25.7 million | about 25.4 million | about 245k   |                                                              |
 
-Logs or screenshots: add them under `docs/ai-usage/` and list the file names here.
+Screenshots or exported logs, if any, are kept under `docs/ai-usage/`.
