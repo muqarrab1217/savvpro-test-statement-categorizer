@@ -1,8 +1,9 @@
 # AI usage
 
-This project was built with an AI coding assistant working under the author's direction.
-This file says what was used, what it did, where it was wrong, and where the usage numbers
-come from.
+The author directed this project and used an AI coding assistant to plan, draft and check
+it. The author was kept informed at every step, set the requirements and changed course
+several times. This file says what was used, what it did, where it was wrong, and where the
+usage numbers come from.
 
 ## Tools
 
@@ -16,8 +17,10 @@ come from.
 No AI model is used inside the application. The categorization brain is deterministic Python
 (see [DESIGN.md](DESIGN.md)); there is no API key and no network call in the decision path.
 
-## What the author decided
+## What the author decided and directed
 
+- Which assessment to take, and the scope: a working product from upload to reviewed result,
+  not only a table.
 - The use case (a freelance designer's business card) and the "ask rather than guess" rule.
 - The input formats: CSV, Excel, PDF and the standard bank formats (OFX, ISO 20022
   camt.053, SWIFT MT940), with size, row and page caps, rate limiting and automatic
@@ -25,11 +28,15 @@ No AI model is used inside the application. The categorization brain is determin
 - Testing against real-world published files instead of only hand-made ones.
 - The look of the frontend: minimal, white background, Outfit font, no gradients, dark
   focus outlines, soft shadows.
-- No em dashes anywhere in the repository.
+- No em dashes anywhere in the repository, and a clean, meaningful commit history.
+- Each change of direction during the build, for example adding the real-world data, the
+  upload caps and rate limiting, the extra input formats and the frontend design rules.
 
 ## How the assistant helped
 
-- Wrote the first version of nearly every file, then iterated against failing tests.
+- Proposed the architecture and the decision rules, drafted the code, tests and documents,
+  and iterated against failing tests.
+- Reported progress after each stage so the author could redirect the work.
 - Ran the parsers over the real sample files, read the output and fixed what was wrong.
 - Split independent work (frontend, standards readers, PDF hardening) across parallel
   sessions with explicit file ownership so they did not overwrite each other.
